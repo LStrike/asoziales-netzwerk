@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="dist/circletext.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <title>Asoziales Netzwerk</title>
+</head>
+
+<body>
+    <div class="container">
+        <form>
+            <h1>Asoziales Netzwerk</h1>
+            <div class="form-group">
+                <input id="antifa-group" type="text" required="required" />
+                <label for="input" class="control-label">name/gruppe/witz</label><i class="bar"></i>
+            </div>
+            <div class="form-group">
+                <select id='antifa-label'>
+                    <option>Asoziales Netzwerk</option>
+                    <option>Asoziale Aktion</option>
+                    <option>Anti-Terror-Anschlag</option>
+                </select>
+                <label for="select" class="control-label"></label><i class="bar"></i>
+            </div>
+        </form>
+        <div class="button-container">
+            <button type="button" class="button" onClick="generateImage()"><span>Erzeuge Logo</span></button>
+            <button type="button" class="button" onClick="downloadImage()"><span>Download</span></button>
+            <button type="button" class="button"
+                onclick="window.open('https://die-kaenguru-chroniken.fandom.com/wiki/Das_Asoziale_Netzwerk')"><span>Asoziales Netzwerk?</span></button>
+
+        </div>
+
+
+        <canvas id="logo" height="500" width="500">
+            Seu navegador não suporta canvas
+        </canvas>
+    </div>
+    <script>
+        const button = document.querySelector('.button');
+        const logoCanvas = document.getElementById('logo')
+
+        function generateImage() {
+            antifaGroup = document.getElementById('antifa-group')
+            antifaLabel = document.getElementById('antifa-label')
+
+            ctx = logoCanvas.getContext("2d");
+            const background = new Image();
+            background.src = 'img/antifascist-action.png';
+            background.onload = function () {
+                ctx.drawImage(background, 0, 0, 500, 500);
+                writeTopCircle(antifaGroup.value, "logo", 510, "white")
+                writeBottomCircle(antifaLabel.value, "logo", 510, "white")
+                logoCanvas.style.display = "flex"
+            }
+        };
+
+        function downloadImage() {
+            const img = logoCanvas.toDataURL("image/png");
+            console.log('img :>> ', img);
+            const link = document.createElement('a');
+            link.href = img;
+            link.download = 'Download.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+
+    </script>
+
+</body>
+
+</html>
