@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <form>
-            <h1>Antifa Generator</h1>
+            <h1>Asoziales Netzwerk</h1>
             <div class="form-group">
                 <input id="antifa-group" type="text" required="required" />
                 <label for="input" class="control-label">name/gruppe/witz</label><i class="bar"></i>
